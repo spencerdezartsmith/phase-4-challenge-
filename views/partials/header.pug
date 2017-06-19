@@ -9,11 +9,11 @@
       a.navbar-brand(href='/') Vinyl
     .navbar-collapse.collapse
       ul.nav.navbar-nav
-        li
+        li(class=(title === 'Home' ? 'active' : ''))
           a(href='/') Home
-        li
+        li(class=(title === 'Sign up for Vinyl' ? 'active' : '' ))
           a(href='/users/register') Register
-        li
+        li(class=(title === 'Sign In' ? 'active' : '' ))
           a(href='/users/login') Login
       ul.nav.navbar-nav.navbar-right
         li
