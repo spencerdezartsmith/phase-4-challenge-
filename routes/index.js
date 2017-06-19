@@ -26,11 +26,11 @@ router.get('/albums/:albumID', (request, response) => {
 })
 
 router.get('/users/register', (request, response) => {
-  response.render('register')
+  response.render('register', { title: 'Sign up for Vinyl' })
 })
 
 router.get('/users/login', (request, response) => {
-  response.render('login')
+  response.render('login', { title: 'Sign In' })
 })
 
 module.exports = router

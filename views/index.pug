@@ -1,0 +1,12 @@
+extends layout.pug
+
+block content
+  include ./partials/header.pug
+  .container
+    h1 Vinyl
+    h2 Records
+    .album-list
+      each album in albums
+        h5 
+          a(href='/albums/#{album.id}') #{album.title}
+        span #{album.artist}

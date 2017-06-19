@@ -1,0 +1,20 @@
+extends layout.pug
+
+block content
+  include ./partials/header
+  
+  .container
+    .row
+      .col-md-offset-5.col-md-3
+        .form-login
+        form(method='post', action='/users/login')
+        h4 #{title}
+        input#userName.form-control.input-sm.chat-input(type='text', placeholder='username')
+        br
+        input#userPassword.form-control.input-sm.chat-input(type='text', placeholder='password')
+        br
+        .wrapper
+        span.group-btn
+        a.btn.btn-primary.btn-md(href='#')
+          | login 
+          i.fa.fa-sign-in

@@ -10,9 +10,9 @@ const expressValidator = require('express-validator')
 
 const routes = require('./routes/index')
 
-require('ejs')
+require('pug')
 app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs');
+app.set('view engine', 'pug');
 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
