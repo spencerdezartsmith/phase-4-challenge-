@@ -25,4 +25,12 @@ router.get('/albums/:albumID', (request, response) => {
   })
 })
 
+router.get('/users/register', (request, response) => {
+  response.render('register')
+})
+
+router.get('/users/login', (request, response) => {
+  response.render('login')
+})
+
 module.exports = router
