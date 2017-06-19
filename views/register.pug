@@ -1,22 +1,25 @@
 extends layout.pug
 
 block content
-	include ./partials/header
-	
-	.container
-		.row
-			.col-md-offset-5.col-md-3
-				.form-login
-				form(method='post', action='/users/login')
-				h4 #{title}
-				input#userName.form-control.input-sm.chat-input(type='text', placeholder='username')
-				br
-				input#userEmail.form-control.input-sm.chat-input(type='email', placeholder='email')
-				br
-				input#userPassword.form-control.input-sm.chat-input(type='password', placeholder='password')
-				br
-				.wrapper
-				span.group-btn
-				a.btn.btn-primary.btn-md(href='#')
-					| login 
-					i.fa.fa-sign-in
+  include ./partials/header
+  
+  .container
+    .row
+      .col-md-offset-5.col-md-3
+        .form-login
+          if errors
+            each error in errors
+              div.alert.alert-danger #{error.msg}
+        form(method='post', action='/users/register')
+          h4 #{title}
+          input#name.form-control.input-sm.chat-input(type='text', name='name' placeholder='name')
+          br
+          input#userEmail.form-control.input-sm.chat-input(type='email', name='email' placeholder='email')
+          br
+          input#userPassword.form-control.input-sm.chat-input(type='password', name='password' placeholder='password')
+          br
+          input#userPassword.form-control.input-sm.chat-input(type='password', name='password2' placeholder='confirm password')
+          br
+          .wrapper
+          span.group-btn
+          input.btn.btn-primary(type='submit', name='submit',value='Register')

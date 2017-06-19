@@ -33,4 +33,20 @@ router.get('/users/login', (request, response) => {
   response.render('login', { title: 'Sign In' })
 })
 
+router.post('/users/register', (request, response) => {
+
+  request.checkBody('name', 'Name field is required').notEmpty()
+  request.checkBody('email', 'Email field is required').notEmpty()
+  request.checkBody('email', 'Email is not valid').isEmail()
+  request.checkBody('password', 'Password field is required').notEmpty()
+  request.checkBody('password2', 'Passwords do not match').equals(request.body.password)
+  const errors = request.validationErrors()
+
+  if (errors) {
+    response.render('register', { errors: errors, title: 'Sign up for Vinyl' })
+  } else {
+    console.log('no errors')
+  }
+})
+
 module.exports = router
