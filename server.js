@@ -1,36 +1,23 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const database = require('./database')
+// const database = require('./database')
 const app = express()
+const path = require('path')
+const session = require('express-session')
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+const flash = require('connect-flash')
+
+const routes = require('./routes/index')
 
 require('ejs')
+app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs');
 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.get('/', (request, response) => {
-  database.getAlbums((error, albums) => {
-    if (error) {
-      response.status(500).render('error', { error: error })
-    } else {
-      response.render('index', { albums: albums })
-    }
-  })
-})
-
-app.get('/albums/:albumID', (request, response) => {
-  const albumID = request.params.albumID
-
-  database.getAlbumsByID(albumID, (error, albums) => {
-    if (error) {
-      response.status(500).render('error', { error: error })
-    } else {
-      const album = albums[0]
-      response.render('album', { album: album })
-    }
-  })
-})
+app.use('/', routes)
 
 app.use((request, response) => {
   response.status(404).render('not_found')
