@@ -26,7 +26,6 @@ const createNewUser = (data) => {
     data.email,
     hash
   ]
-
   return db.one(sql, variables)
 }
 
@@ -35,7 +34,11 @@ const findUserByID = (userID) => {
 }
 
 const getUserByEmail = (email) => {
-  return db.one('SELECT * FROM users WHERE  email = $1', [email])
+  return db.one('SELECT * FROM users WHERE email = $1', [email])
+}
+
+const getAllReviews = () => {
+  return db.any('SELECT reviews.review, reviews.review_date, albums.title AS album_title, users.name AS reviewer, albums.id AS album_id FROM (reviews INNER JOIN albums ON reviews.album_id = albums.id) INNER JOIN users ON reviews.user_id = users.id ORDER BY reviews.review_date DESC')
 }
 
 module.exports = {
@@ -43,5 +46,6 @@ module.exports = {
   getAlbumsByID,
   createNewUser,
   findUserByID,
-  getUserByEmail
+  getUserByEmail,
+  getAllReviews
 }
