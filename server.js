@@ -6,6 +6,7 @@ const session = require('express-session')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const flash = require('connect-flash')
+const bcrypt = require('bcryptjs')
 const expressValidator = require('express-validator')
 
 const routes = require('./routes/index')

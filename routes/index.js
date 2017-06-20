@@ -1,6 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const database = require('../database')
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+const authHelpers = require('./auth_helpers/helpers')
 
 router.get('/', (req, res) => {
   database.getAlbums()
@@ -32,6 +35,37 @@ router.get('/users/login', (req, res) => {
   res.render('login', { title: 'Sign In' })
 })
 
+router.post('/users/login',
+  passport.authenticate('local', { failureRedirect: '/users/login', failureFlash: 'Invalid Credentials'}),
+  (req, res) => {
+    req.flash('success', 'You are now logged in!')
+    res.status(302).redirect(`/users/${req.user.id}`)
+})
+
+passport.serializeUser((user, done) => {
+  done(null, user.id)
+})
+
+passport.deserializeUser((id, done) => {
+  database.findUserByID(id)
+    .then((user) => done(null, user))
+    .catch((error) => done(err, null))
+})
+
+const options = { usernameField: 'email' }
+passport.use(new LocalStrategy(options, (username, password, done) => {
+  database.getUserByEmail(username)
+    .then((user) => {
+      if (!user) return done(null, false)
+      if (!authHelpers.comparePassword(password, user.password)) {
+        return done(null, false)
+      } else {
+        return done(null, user)
+      }
+    })
+    .catch((err) => { return done(err) })
+}))
+
 router.post('/users/register', (req, res, next) => {
   req.checkBody('name', 'Name field is required').notEmpty()
   req.checkBody('email', 'Email field is required').notEmpty()
@@ -58,7 +92,8 @@ router.post('/users/register', (req, res, next) => {
 router.get('/users/:id', (req, res) => {
   database.findUserByID(req.params.id)
     .then((user) => {
-      res.render('profile', { user: user })
+      const dateJoined = user.datejoined.toString()
+      res.render('profile', { user: user, date: dateJoined })
     })
     .catch((error) => {
       res.status(500).render('error', { error })
