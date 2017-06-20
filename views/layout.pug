@@ -19,13 +19,16 @@ html
           a.navbar-brand(href='/') Vinyl
         .navbar-collapse.collapse
           ul.nav.navbar-nav
-            li(class=(title === 'Home' ? 'active' : ''))
+            li(class=(title === 'Albums' ? 'active' : ''))
               a(href='/albums') Home
             if !user
               li(class=(title === 'Sign up for Vinyl' ? 'active' : '' ))
                 a(href='/users/register') Register
               li(class=(title === 'Sign In' ? 'active' : '' ))
                 a(href='/users/login') Login
+            else
+              li(class=(title === 'Profile' ? 'active' : '' ))
+                a(href='/users/' + user.id) Profile
           ul.nav.navbar-nav.navbar-right
             if user
               li
