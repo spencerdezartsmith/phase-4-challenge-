@@ -2,11 +2,29 @@ extends layout.pug
 
 block content
 
-  .container
-    h1 Vinyl
-    h2 Records
-    .album-list
-      each album in albums
-        h5 
-          a(href='/albums/' + album.id) #{album.title}
-        span #{album.artist}
+  .jumbotron.jumbotron-fluid
+    .container-title
+      h1.display-3 Vinyl
+      p.lead
+        | Opinionated people giving their personal opions about albums
+  .container-blog
+    .row
+      .col-md-3.col-md-offset-1.blog-sidebar
+        h1 Vinyl
+        h2 Records
+        .album-list
+          each album in albums
+            h5 
+              a(href='/albums/' + album.id) #{album.title}
+            span #{album.artist}
+      .col-md-8.blog-main
+        .header-reviews
+          h1 Recent Reviews
+        .blog-post
+          each review in reviews
+            h4.blog-post-title
+              a(href='/albums/' + review.album_id) #{review.album_title} 
+              span #{review.review_date}
+            p.content #{review.review}
+            p.blog-post-meta by #{review.reviewer}
+        
