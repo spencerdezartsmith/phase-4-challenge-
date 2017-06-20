@@ -20,7 +20,7 @@ const getAlbumsByID = (albumID) => {
 const createNewUser = (data) => {
   const sql = 'INSERT INTO users(name, email, password) values($1, $2, $3) RETURNING id'
   const salt = bcrypt.genSaltSync(10);
-  const hash = bcrypt.hashSync("B4c0/\/", salt);
+  const hash = bcrypt.hashSync(data.password, salt);
   const variables = [
     data.name,
     data.email,

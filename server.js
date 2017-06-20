@@ -8,6 +8,7 @@ const LocalStrategy = require('passport-local').Strategy
 const flash = require('connect-flash')
 const bcrypt = require('bcryptjs')
 const expressValidator = require('express-validator')
+const config = require('./config/config')
 
 const routes = require('./routes/index')
 
@@ -20,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // Handle Sessions
 app.use(session({
-  secret: 'doingmybest',
+  secret: config.SECRET,
   saveUninitialized: true,
   resave: true
 }))
