@@ -1,4 +1,5 @@
 // const pg = require('pg')
+const bcrypt = require('bcryptjs')
 const promise = require('bluebird')
 const options = {
   promiseLib: promise
@@ -18,10 +19,12 @@ const getAlbumsByID = (albumID) => {
 
 const createNewUser = (data) => {
   const sql = 'INSERT INTO users(name, email, password) values($1, $2, $3) RETURNING id'
+  const salt = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync("B4c0/\/", salt);
   const variables = [
     data.name,
     data.email,
-    data.password
+    hash
   ]
 
   return db.one(sql, variables)
