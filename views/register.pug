@@ -1,11 +1,10 @@
 extends layout.pug
 
 block content
-  include ./partials/header
   
   .container
     .row
-      .col-md-offset-5.col-md-3
+      .col-md-offset-1.col-md-12
         .form-login
           if errors
             each error in errors
