@@ -3,3 +3,20 @@ html, body {
   padding: 0;
   width: 100vw;
 }
+
+.img {
+  height: 100%;
+  width: 100%;
+}
+
+.image-pane {
+  border: 1px solid black;
+  height: 800px;
+}
+
+.review-pane {
+  border: 1px solid black;
+  height: 800px;
+  display: flex;
+  justify-content: center;
+}

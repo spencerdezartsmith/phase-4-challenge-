@@ -1,0 +1,17 @@
+extends layout.pug
+
+block content
+  include ./partials/header
+  
+  .container
+    .row
+      .col-sm-4.co-sm-auto.image-pane
+        a.thumbnail(href='#')
+          img(src='http://www.positivehomeopathy.com/wp-content/uploads/2016/09/Dummy-Profile-Picture-1.jpg', alt='profile-pic')
+      .col-sm-8.review-pane
+        .page-header
+          h2 #{user.name}
+          h5 Email #{user.email}
+          h5 Date Joined #{date}
+          
+          

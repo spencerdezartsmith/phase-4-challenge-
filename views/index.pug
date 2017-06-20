@@ -8,5 +8,5 @@ block content
     .album-list
       each album in albums
         h5 
-          a(href='/albums/#{album.id}') #{album.title}
+          a(href='/albums/' + album.id) #{album.title}
         span #{album.artist}
