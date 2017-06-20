@@ -4,15 +4,12 @@ const comparePassword = (passwordCred, hash) => {
   return bcrypt.compareSync(passwordCred, hash)
 }
 
-const ensureAuthentication = (req, res, next) => {
-  if (req.isAuthenticated) {
-    return next()
-  } else {
-    res.redirect('/users/login')
-  }
+function loginRequired(req, res, next) {
+  if (!req.user) return res.redirect('/users/login');
+  return next();
 }
 
 module.exports = {
   comparePassword,
-  ensureAuthentication
+  loginRequired
 }
