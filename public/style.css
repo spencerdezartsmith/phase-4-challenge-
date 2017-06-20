@@ -8,14 +8,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 700px;
-}
-
-.jumbotron {
-  margin: 100px;
-  display: flex;
-  justify-content: center;
-  border-radius: 10px;
+  width: 100%;
 }
 
 .display-3 {
@@ -52,4 +45,55 @@ html, body {
 
 .btn-secondary {
   border: 1px solid black;
+}
+
+.btn.btn-secondary.add-review {
+  display: flex;
+  align-items: center;
+  height: 30px;
+}
+
+.blog-post-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.blog-main {
+  padding-right: 350px;
+}
+
+.blog-post-meta {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header-reviews {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+}
+
+.header h1 {
+  font-size: 60px;
+}
+
+.reviews-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+.submit-box {
+  display: flex;
+  justify-content: flex-end;
 }

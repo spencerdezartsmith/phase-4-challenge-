@@ -1,6 +1,20 @@
 extends layout.pug
 
 block content
-  h1 #{album.title}
-  em by #{album.artist}
-  h2 Reviews
+  .container-blog
+    .header
+      h1 #{albumTitle}
+    .row
+      .col-md-3
+      .col-md-6.blog-content
+        .reviews-header
+          h1 Reviews
+          a.btn.btn-info(href='/albums/' + albumID + '/new-review', role='button') Link Button
+        .blog-post
+          each review in reviews
+            h4.blog-post-title
+              a(href='/albums/' + albumID) #{albumTitle}
+              span #{review.review_date}
+            p.content #{review.review}
+            p.blog-post-meta by #{review.reviewer}
+      .col-md-3
