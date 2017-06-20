@@ -6,6 +6,10 @@ const LocalStrategy = require('passport-local').Strategy
 const authHelpers = require('./auth_helpers/helpers')
 
 router.get('/', (req, res) => {
+  res.render('landing-page')
+})
+
+router.get('/albums', authHelpers.ensureAuthentication, (req, res) => {
   database.getAlbums()
   .then((albums) => {
     res.render('index', { albums: albums })
@@ -89,6 +93,12 @@ router.post('/users/register', (req, res, next) => {
   }
 })
 
+router.get('/users/logout', (req, res) => {
+  req.logout();
+  req.flash('success', 'You have successfully logged out')
+  res.redirect('/users/login')
+})
+
 router.get('/users/:id', (req, res) => {
   database.findUserByID(req.params.id)
     .then((user) => {
@@ -99,5 +109,6 @@ router.get('/users/:id', (req, res) => {
       res.status(500).render('error', { error })
     })
 })
+
 
 module.exports = router
