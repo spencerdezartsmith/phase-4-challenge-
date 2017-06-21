@@ -2,9 +2,10 @@ extends layout.pug
 
 block content
   
-  .container
+  .container-register
     .row
-      .col-md-offset-1.col-md-12
+      .col-md-4
+      .col-md-4
         .form-login
           if errors
             each error in errors
@@ -22,3 +23,4 @@ block content
           .wrapper
           span.group-btn
           input.btn.btn-primary(type='submit', value='Register')
+      .col-md-4
