@@ -54,6 +54,7 @@ html, body {
 
 .blog-post-title {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 
