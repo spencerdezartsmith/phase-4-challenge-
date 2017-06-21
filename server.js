@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const app = express()
 const path = require('path')
 const session = require('express-session')
+const cookieParser = require('cookie-parser')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const flash = require('connect-flash')
@@ -18,12 +19,14 @@ app.set('view engine', 'pug');
 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cookieParser())
 
 // Handle Sessions
 app.use(session({
   secret: config.SECRET,
   saveUninitialized: true,
-  resave: true
+  resave: true,
+  cookie:{_expires : 60000000}
 }))
 
 // Passport

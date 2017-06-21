@@ -11,7 +11,9 @@ const dbName = 'vinyl'
 const connectionString = process.env.DATABASE_URL || `postgres://localhost:5432/${dbName}`
 const db = pgp(connectionString)
 
-const getAlbums = () => { return db.any('SELECT * FROM albums') }
+const getAlbums = () => {
+  return db.any('SELECT * FROM albums')
+}
 
 const getAlbumByID = (albumID) => {
   return db.one('SELECT * FROM albums WHERE id = $1', [albumID])

@@ -7,14 +7,20 @@ block content
     .row
       .col-md-3
       .col-md-6.blog-content
-        .reviews-header
-          h1 Reviews
-          a.btn.btn-info(href='/albums/' + albumID + '/new-review', role='button') Add Review
-        .blog-post
-          each review in reviews
-            h4.blog-post-title
-              a(href='/albums/' + albumID) #{albumTitle}
-              span #{review.review_date}
-            p.content #{review.review}
-            p.blog-post-meta by #{review.reviewer}
+        - var reviewed = (reviews.length > 0)
+        if reviewed
+          .reviews-header
+            h1 Reviews
+            a.btn.btn-info(href='/albums/' + albumID + '/new-review', role='button') Add Review
+          .blog-post
+            each review in reviews
+              h4.blog-post-title
+                a(href='/albums/' + albumID) #{albumTitle}
+                span #{review.review_date}
+              p.content #{review.review}
+              p.blog-post-meta by #{review.reviewer}
+        else
+          .reviews-header
+            h1 No Reviews Yet
+            a.btn.btn-info(href='/albums/' + albumID + '/new-review', role='button') Add Review
       .col-md-3

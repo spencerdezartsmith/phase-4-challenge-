@@ -21,12 +21,15 @@ router.get('/', (req, res) => {
 router.get('/albums/:albumID', authHelpers.loginRequired, (req, res, next) => {
   const albumID = req.params.albumID
 
-   database.getOneAlbumsReviews(albumID)
-    .then((reviews) => {
-      res.render('album', { albumID: albumID, albumTitle: reviews[0].album_title, reviews: reviews })
-    })
-    .catch((error) => {
-      res.status(500).render('error', { error })
+   database.getAlbumByID(albumID)
+    .then((album) => {
+      database.getOneAlbumsReviews(albumID)
+       .then((reviews) => {
+         res.render('album', { albumID: albumID, albumTitle: album.title, reviews: reviews })
+       })
+       .catch((error) => {
+         res.status(500).render('error', { error })
+       })
     })
 })
 
