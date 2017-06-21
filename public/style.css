@@ -3,3 +3,126 @@ html, body {
   padding: 0;
   width: 100vw;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+.jumbotron {
+  margin-left: 100px;
+  margin-right: 100px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+h1.display-3 {
+  font-size: 80px;
+}
+
+.display-3 {
+  display: flex;
+  justify-content: center;
+}
+
+.blog-sidebar {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.album-list {
+  margin-top: 20px;
+}
+
+.lead {
+  display: flex;
+  justify-content: center;
+}
+
+.thumbnail {
+  height: 200px;
+  width: 200px;
+  margin-top: 20px;
+}
+
+.image-pane {
+  height: 800px;
+}
+
+.review-pane {
+  height: 800px;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  justify-content: space-around;
+  height: 300px;
+  margin-top: 100px;
+  align-items: center;
+}
+
+.btn-secondary {
+  border: 1px solid black;
+}
+
+.btn.btn-secondary.add-review {
+  display: flex;
+  align-items: center;
+  height: 30px;
+}
+
+.blog-post-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.blog-main {
+  padding-right: 350px;
+}
+
+.blog-post-meta {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fa.fa-trash {
+  padding-left: 20px;
+}
+
+.header-reviews {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+}
+
+.header h1 {
+  font-size: 60px;
+}
+
+.reviews-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+.submit-box {
+  display: flex;
+  justify-content: flex-end;
+}

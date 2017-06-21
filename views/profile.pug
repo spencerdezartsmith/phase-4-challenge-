@@ -1,0 +1,36 @@
+extends layout.pug
+
+block content
+  
+  .container-profile
+    .row
+      .col-md-2
+      .col-md-2.image-pane
+        a.thumbnail(href='#')
+          img(src='http://www.positivehomeopathy.com/wp-content/uploads/2016/09/Dummy-Profile-Picture-1.jpg', alt='profile-pic')
+      .col-md-6.blog-content
+        - var dateObjJoin = new Date(date)
+        - var dateStrJoin = dateObjJoin.toDateString()
+        .page-header
+          h2 #{user.name}
+          h5 Email: #{user.email}
+          h5 Date Joined: #{dateStrJoin}
+        .reviews-header
+          h1 Reviews
+        .blog-post
+          each review in reviews
+            - var dateObjRev = new Date(review.review_date)
+            - var dateStrRev = dateObjRev.toDateString()
+            - var id = review.id
+            div(class='single-post' id=id)
+              h4.blog-post-title
+                a(href='/albums/' + review.album_id) #{review.album_title}
+                .date-trash
+                  span#date #{dateStrRev}
+                  span
+                    i.fa.fa-trash(aria-hidden='true')#delete
+              p.content #{review.review}
+              br
+      .col-md-2
+          
+          

@@ -1,0 +1,26 @@
+extends layout.pug
+
+block content
+  
+  .container-register
+    .row
+      .col-md-4
+      .col-md-4
+        .form-login
+          if errors
+            each error in errors
+              div.alert.alert-danger #{error.msg}
+        form(method='post', action='/users/register')
+          h4 #{title}
+          input#name.form-control.input-sm.chat-input(type='text', name='name' placeholder='name')
+          br
+          input#userEmail.form-control.input-sm.chat-input(type='email', name='email' placeholder='email')
+          br
+          input#userPassword.form-control.input-sm.chat-input(type='password', name='password' placeholder='password')
+          br
+          input#userPassword.form-control.input-sm.chat-input(type='password', name='password2' placeholder='confirm password')
+          br
+          .wrapper
+          span.group-btn
+          input.btn.btn-primary(type='submit', value='Register')
+      .col-md-4

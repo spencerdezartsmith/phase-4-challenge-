@@ -1,0 +1,19 @@
+extends layout.pug
+
+block content
+  
+  .container-login
+    .row
+      .col-md-4
+      .col-md-4
+        .form-login
+          form(method='post', action='/users/login')
+            h4 #{title}
+            input#email.form-control.input-sm.chat-input(type='email', name='email', placeholder='email')
+            br
+            input#userPassword.form-control.input-sm.chat-input(type='password', name='password', placeholder='password')
+            br
+            .wrapper
+            span.group-btn
+            input.btn.btn-primary(type='submit', name='submit',value='Login')
+      .col-md-4
