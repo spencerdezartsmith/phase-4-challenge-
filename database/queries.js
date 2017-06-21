@@ -1,4 +1,3 @@
-// const pg = require('pg')
 const bcrypt = require('bcryptjs')
 const promise = require('bluebird')
 const options = {

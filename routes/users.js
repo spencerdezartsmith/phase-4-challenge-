@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const database = require('../database')
+const database = require('../database/queries')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const authHelpers = require('./auth_helpers/helpers')
