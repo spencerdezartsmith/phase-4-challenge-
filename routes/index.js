@@ -83,6 +83,7 @@ router.post('/users/login',
   (req, res) => {
     req.flash('success', 'You are now logged in!')
     res.status(302).redirect(`/users/${req.user.id}`)
+    res.end()
 })
 
 passport.serializeUser((user, done) => {
