@@ -17,16 +17,21 @@ block content
               a(href='/albums/' + album.id) #{album.title}
             span #{album.artist}
       .col-md-8.blog-main
-        .header-reviews
-          h1 Recent Reviews
-        .blog-post
-          each review in reviews
-            - var dateObj = new Date(review.review_date)
-            - var dateStr = dateObj.toDateString()
-            h4.blog-post-title
-              a(href='/albums/' + review.album_id) #{review.album_title} 
-              span #{dateStr}
-            p.content #{review.review}
-            p.blog-post-meta by #{review.reviewer}
-            br
+        - var reviewed = (reviews.length > 0)
+        if reviewed
+          .header-reviews
+            h1 Recent Reviews
+          .blog-post
+            each review in reviews
+              - var dateObj = new Date(review.review_date)
+              - var dateStr = dateObj.toDateString()
+              h4.blog-post-title
+                a(href='/albums/' + review.album_id) #{review.album_title} 
+                span #{dateStr}
+              p.content #{review.review}
+              p.blog-post-meta by #{review.reviewer}
+              br
+        else
+          .header-reviews
+            h1 No Reviews Yet
         
