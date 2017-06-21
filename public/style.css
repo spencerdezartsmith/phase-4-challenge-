@@ -67,6 +67,10 @@ html, body {
   justify-content: flex-end;
 }
 
+.fa.fa-trash {
+  padding-left: 20px;
+}
+
 .header-reviews {
   display: flex;
   flex-direction: row;
