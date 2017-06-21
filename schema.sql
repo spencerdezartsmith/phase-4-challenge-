@@ -17,5 +17,5 @@ CREATE TABLE reviews (
   review TEXT NOT NULL,
   user_id INT REFERENCES users(id),
   album_id INT REFERENCES albums(id),
-  review_date DATE NOT NULL DEFAULT NOW()
+  review_date TIMESTAMP NOT NULL DEFAULT NOW()
 )

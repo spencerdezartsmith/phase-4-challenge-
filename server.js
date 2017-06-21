@@ -12,6 +12,8 @@ const expressValidator = require('express-validator')
 const config = require('./config/config')
 
 const routes = require('./routes/index')
+const users = require('./routes/users')
+const albums = require('./routes/albums')
 
 require('pug')
 app.set('views', path.join(__dirname, 'views'))
@@ -25,8 +27,7 @@ app.use(cookieParser())
 app.use(session({
   secret: config.SECRET,
   saveUninitialized: true,
-  resave: true,
-  cookie:{_expires : 60000000}
+  resave: true
 }))
 
 // Passport
@@ -63,6 +64,8 @@ app.get('*', (req, res, next) => {
 })
 
 app.use('/', routes)
+app.use('/users', users)
+app.use('/albums', albums)
 
 app.use((request, response) => {
   response.status(404).render('not_found')
