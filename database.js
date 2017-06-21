@@ -13,7 +13,7 @@ const db = pgp(connectionString)
 
 const getAlbums = () => { return db.any('SELECT * FROM albums') }
 
-const getAlbumsByID = (albumID) => {
+const getAlbumByID = (albumID) => {
   return db.one('SELECT * FROM albums WHERE id = $1', [albumID])
 }
 
@@ -29,7 +29,7 @@ const createNewUser = (data) => {
   return db.one(sql, variables)
 }
 
-const findUserByID = (userID) => {
+const getUserByID = (userID) => {
   return db.one('SELECT * FROM users WHERE id = $1', [userID])
 }
 
@@ -41,11 +41,28 @@ const getAllReviews = () => {
   return db.any('SELECT reviews.review, reviews.review_date, albums.title AS album_title, users.name AS reviewer, albums.id AS album_id FROM (reviews INNER JOIN albums ON reviews.album_id = albums.id) INNER JOIN users ON reviews.user_id = users.id ORDER BY reviews.review_date DESC')
 }
 
+const getOneAlbumsReviews = (albumID) => {
+  return db.any('SELECT reviews.review, reviews.review_date, albums.title AS album_title, users.name AS reviewer FROM (reviews INNER JOIN albums ON reviews.album_id = albums.id) INNER JOIN users ON reviews.user_id = users.id WHERE albums.id = $1 ORDER BY reviews.review_date DESC;', [albumID])
+}
+
+const createNewReview = (review, userID, albumID) => {
+  return db.one('INSERT INTO reviews(review, user_id, album_id) VALUES ($1, $2, $3) RETURNING id', [review, userID, albumID])
+}
+
+const getOneUsersReviews = (userID) => {
+  return db.any('SELECT reviews.review, reviews.review_date, albums.id AS album_id, albums.title AS album_title, users.name AS reviewer FROM (reviews INNER JOIN albums ON reviews.album_id = albums.id) INNER JOIN users ON reviews.user_id = users.id WHERE users.id = $1 ORDER BY reviews.review_date DESC;', [userID])
+}
+
+
+
 module.exports = {
   getAlbums,
-  getAlbumsByID,
+  getAlbumByID,
   createNewUser,
-  findUserByID,
+  getUserByID,
   getUserByEmail,
-  getAllReviews
+  getAllReviews,
+  getOneAlbumsReviews,
+  createNewReview,
+  getOneUsersReviews
 }

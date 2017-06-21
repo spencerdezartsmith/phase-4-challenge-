@@ -6,29 +6,57 @@ const LocalStrategy = require('passport-local').Strategy
 const authHelpers = require('./auth_helpers/helpers')
 
 router.get('/', (req, res) => {
-  res.render('landing-page')
-})
-
-router.get('/albums', authHelpers.ensureAuthentication, (req, res) => {
   database.getAlbums()
   .then((albums) => {
-    res.render('index', { albums: albums })
+    database.getAllReviews()
+      .then((reviews) => {
+        res.render('index', { albums: albums, reviews: reviews })
+      })
   })
   .catch(error => {
     res.status(500).render('error', { error: error })
   })
 })
 
-router.get('/albums/:albumID', (req, res) => {
+router.get('/albums/:albumID', authHelpers.loginRequired, (req, res, next) => {
   const albumID = req.params.albumID
 
-  database.getAlbumsByID(albumID)
-    .then((album) => {
-      res.render('album', { album: album })
+   database.getOneAlbumsReviews(albumID)
+    .then((reviews) => {
+      res.render('album', { albumID: albumID, albumTitle: reviews[0].album_title, reviews: reviews })
     })
     .catch((error) => {
       res.status(500).render('error', { error })
     })
+})
+
+router.get('/albums/:id/new-review', authHelpers.loginRequired, (req, res, next) => {
+  const albumID = req.params.id
+
+  database.getAlbumByID(albumID)
+    .then((album) => {
+      res.render('add_review', { album: album })
+    })
+    .catch((error) => {
+      res.status(500).render('error', { error })
+    })
+})
+
+router.post('/albums/:id/new-review', authHelpers.loginRequired, (req, res, next) => {
+  req.checkBody('review', 'Review field cannot be empty').notEmpty()
+  let errors = req.validationErrors()
+
+  if (errors) {
+    database.getAlbumByID(req.params.id)
+      .then(album => res.render('add_review', { errors: errors, album: album }))
+      .catch(error => { res.status(500).render('error', { error })})
+  } else {
+    database.createNewReview(req.body.review, Number(req.user.id), Number(req.params.id))
+      .then((id) => {
+        res.redirect('/')
+      })
+      .catch(error => { res.status(500).render('error', { error })})
+  }
 })
 
 router.get('/users/register', (req, res) => {
@@ -51,7 +79,7 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((id, done) => {
-  database.findUserByID(id)
+  database.getUserByID(id)
     .then((user) => done(null, user))
     .catch((error) => done(err, null))
 })
@@ -77,15 +105,13 @@ router.post('/users/register', (req, res, next) => {
   req.checkBody('password', 'Password field is required').notEmpty()
   req.checkBody('password2', 'Passwords do not match').equals(req.body.password)
   let errors = req.validationErrors()
-  let url;
 
   if (errors) {
     res.render('register', { errors: errors, title: 'Sign up for Vinyl' })
   } else {
     database.createNewUser(req.body)
       .then((user) => {
-        url = `/users/${user.id}`
-        res.redirect(url)
+        res.redirect(`/users/${user.id}`)
       })
       .catch((error) => {
         res.status(500).render('error', { error })
@@ -99,11 +125,15 @@ router.get('/users/logout', (req, res) => {
   res.redirect('/')
 })
 
-router.get('/users/:id', (req, res) => {
-  database.findUserByID(req.params.id)
+router.get('/users/:id', authHelpers.loginRequired, (req, res, next) => {
+  const userID = req.params.id
+  database.getUserByID(userID)
     .then((user) => {
-      const dateJoined = user.datejoined.toString()
-      res.render('profile', { user: user, date: dateJoined })
+      const dateJoined = user.date_joined.toString()
+      database.getOneUsersReviews(userID)
+        .then((reviews) => {
+          res.render('profile', { user: user, date: dateJoined, reviews: reviews })
+        })
     })
     .catch((error) => {
       res.status(500).render('error', { error })
