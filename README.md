@@ -13,11 +13,12 @@ Run `$ npm run db:schema` to set up tables
 Run `$ npm run db:seed-albums` to load album seed data  
 
 Go to http://localhost:3000/
-  - From the homepage, navigate to the *Register* link and sign up
+  - From the homepage, navigate to the **Register** link and sign up
   - Head back to the command line and run `$ npm run db:seed-reviews`
-  - Head back to the homepage and *Login*
+  - Head back to the homepage and **Login**
   - You are now able to navigate all around the site freely
-  - Have opinions Have fun :)
+  - Have opinions
+  - Have fun :)
 
 
 ## Author:
