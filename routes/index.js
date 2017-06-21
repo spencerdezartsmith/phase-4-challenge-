@@ -8,7 +8,7 @@ const authHelpers = require('./auth_helpers/helpers')
 router.get('/', (req, res) => {
   database.getAlbums()
   .then((albums) => {
-    database.getAllReviews()
+    database.getThreeReviews()
       .then((reviews) => {
         res.render('index', { albums: albums, reviews: reviews })
       })
@@ -57,6 +57,14 @@ router.post('/albums/:id/new-review', authHelpers.loginRequired, (req, res, next
       })
       .catch(error => { res.status(500).render('error', { error })})
   }
+})
+
+router.delete('/users/reviews/:reviewID', authHelpers.loginRequired, (req, res, next) => {
+  database.removeOneReview(req.params.reviewID)
+    .then(() => {
+      res.status(200)
+      res.send('Deleted Review')
+    })
 })
 
 router.get('/users/register', (req, res) => {

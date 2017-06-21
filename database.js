@@ -37,8 +37,8 @@ const getUserByEmail = (email) => {
   return db.one('SELECT * FROM users WHERE email = $1', [email])
 }
 
-const getAllReviews = () => {
-  return db.any('SELECT reviews.review, reviews.review_date, albums.title AS album_title, users.name AS reviewer, albums.id AS album_id FROM (reviews INNER JOIN albums ON reviews.album_id = albums.id) INNER JOIN users ON reviews.user_id = users.id ORDER BY reviews.review_date DESC')
+const getThreeReviews = () => {
+  return db.any('SELECT reviews.review, reviews.review_date, albums.title AS album_title, users.name AS reviewer, albums.id AS album_id FROM (reviews INNER JOIN albums ON reviews.album_id = albums.id) INNER JOIN users ON reviews.user_id = users.id ORDER BY reviews.review_date DESC LIMIT 3')
 }
 
 const getOneAlbumsReviews = (albumID) => {
@@ -50,7 +50,11 @@ const createNewReview = (review, userID, albumID) => {
 }
 
 const getOneUsersReviews = (userID) => {
-  return db.any('SELECT reviews.review, reviews.review_date, albums.id AS album_id, albums.title AS album_title, users.name AS reviewer FROM (reviews INNER JOIN albums ON reviews.album_id = albums.id) INNER JOIN users ON reviews.user_id = users.id WHERE users.id = $1 ORDER BY reviews.review_date DESC;', [userID])
+  return db.any('SELECT reviews.id, reviews.review, reviews.review_date, albums.id AS album_id, albums.title AS album_title, users.name AS reviewer FROM (reviews INNER JOIN albums ON reviews.album_id = albums.id) INNER JOIN users ON reviews.user_id = users.id WHERE users.id = $1 ORDER BY reviews.review_date DESC;', [userID])
+}
+
+const removeOneReview = (reviewID) => {
+  return db.none('DELETE FROM reviews WHERE id = $1', [reviewID])
 }
 
 
@@ -61,8 +65,9 @@ module.exports = {
   createNewUser,
   getUserByID,
   getUserByEmail,
-  getAllReviews,
+  getThreeReviews,
   getOneAlbumsReviews,
   createNewReview,
-  getOneUsersReviews
+  getOneUsersReviews,
+  removeOneReview
 }
