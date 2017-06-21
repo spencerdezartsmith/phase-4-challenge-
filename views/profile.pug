@@ -17,12 +17,14 @@ block content
           h1 Reviews
         .blog-post
           each review in reviews
+            - var dateObj = new Date(review.review_date)
+            - var dateStr = dateObj.toDateString()
             - var id = review.id
             div(class='single-post' id=id)
               h4.blog-post-title
                 a(href='/albums/' + review.album_id) #{review.album_title}
                 .date-trash
-                  span#date #{review.review_date}
+                  span#date #{dateStr}
                   span
                     i.fa.fa-trash(aria-hidden='true')#delete
               p.content #{review.review}

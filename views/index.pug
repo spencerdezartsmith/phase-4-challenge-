@@ -22,9 +22,11 @@ block content
           h1 Recent Reviews
         .blog-post
           each review in reviews
+            - var dateObj = new Date(review.review_date)
+            - var dateStr = dateObj.toDateString()
             h4.blog-post-title
               a(href='/albums/' + review.album_id) #{review.album_title} 
-              span #{review.review_date}
+              span #{dateStr}
             p.content #{review.review}
             p.blog-post-meta by #{review.reviewer}
         
