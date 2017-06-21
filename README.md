@@ -6,11 +6,11 @@ Part of the application has already been built for you. Your job is to take it t
 
 ## Getting Started
 
-Run `$ npm install` to install dependencies
-Run `$ npm run start` to create server instance
-Run `$ npm run db:create` to create database
-Run `$ npm run db:schema` to set up tables
-Run `$ npm run db:seed-albums` to load album seed data
+Run `$ npm install` to install dependencies  
+Run `$ npm run start` to create server instance  
+Run `$ npm run db:create` to create database  
+Run `$ npm run db:schema` to set up tables  
+Run `$ npm run db:seed-albums` to load album seed data  
 
 Go to http://localhost:3000/
   - From the homepage, navigate to the *Register* link and sign up
