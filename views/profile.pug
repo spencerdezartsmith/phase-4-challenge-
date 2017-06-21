@@ -2,15 +2,26 @@ extends layout.pug
 
 block content
   
-  .container
+  .container-profile
     .row
-      .col-sm-4.co-sm-auto.image-pane
+      .col-md-2
+      .col-md-2.image-pane
         a.thumbnail(href='#')
           img(src='http://www.positivehomeopathy.com/wp-content/uploads/2016/09/Dummy-Profile-Picture-1.jpg', alt='profile-pic')
-      .col-sm-8.review-pane
+      .col-md-6.blog-content
         .page-header
           h2 #{user.name}
           h5 Email #{user.email}
           h5 Date Joined #{date}
+        .reviews-header
+          h1 Reviews
+        .blog-post
+          each review in reviews
+            h4.blog-post-title
+              a(href='/albums/' + review.album_id) #{review.album_title}
+              span #{review.review_date}
+            p.content #{review.review}
+            br
+      .col-md-2
           
           
