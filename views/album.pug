@@ -14,11 +14,14 @@ block content
             a.btn.btn-info(href='/albums/' + albumID + '/new-review', role='button') Add Review
           .blog-post
             each review in reviews
+              - var dateObj = new Date(review.review_date)
+              - var date = dateObj.toDateString()
               h4.blog-post-title
                 a(href='/albums/' + albumID) #{albumTitle}
-                span #{review.review_date}
+                span #{date}
               p.content #{review.review}
               p.blog-post-meta by #{review.reviewer}
+              br
         else
           .reviews-header
             h1 No Reviews Yet

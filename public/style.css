@@ -126,3 +126,8 @@ h1.display-3 {
   display: flex;
   justify-content: flex-end;
 }
+
+.reviews-header h1 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
