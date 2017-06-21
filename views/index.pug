@@ -2,7 +2,7 @@ extends layout.pug
 
 block content
 
-  .jumbotron.jumbotron-fluid
+  .jumbotron
     .container-title
       h1.display-3 Vinyl
       p.lead
@@ -10,8 +10,7 @@ block content
   .container-blog
     .row
       .col-md-3.col-md-offset-1.blog-sidebar
-        h1 Vinyl
-        h2 Records
+        h1 Records
         .album-list
           each album in albums
             h5 

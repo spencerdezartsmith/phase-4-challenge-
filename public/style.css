@@ -11,7 +11,32 @@ html, body {
   width: 100vw;
 }
 
+.jumbotron {
+  margin-left: 100px;
+  margin-right: 100px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+h1.display-3 {
+  font-size: 80px;
+}
+
 .display-3 {
+  display: flex;
+  justify-content: center;
+}
+
+.blog-sidebar {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.album-list {
+  margin-top: 20px;
+}
+
+.lead {
   display: flex;
   justify-content: center;
 }
