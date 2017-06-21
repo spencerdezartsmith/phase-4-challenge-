@@ -12,7 +12,7 @@ The app uses a basic Express file structure, and includes SQL files to set up th
 
 ```sh
 albums.sql          # seed album data
-database.js         # database connection and queries
+database/database.js         # database connection and queries
 package.json        # npm standard
 public/             # static assets go here
 README.md           # you are here

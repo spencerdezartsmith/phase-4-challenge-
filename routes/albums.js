@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const database = require('../database')
+const database = require('../database/queries')
 const authHelpers = require('./auth_helpers/helpers')
 
 router.get('/:albumID', authHelpers.loginRequired, (req, res, next) => {
