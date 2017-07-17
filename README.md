@@ -34,7 +34,7 @@ Go to http://localhost:3000/
 
 ## Screenshots
 
-![alt tag](http://i.imgur.com/OtpxzStb.png)
+<img src="http://i.imgur.com/OtpxzSt.png" alt="alt text" width="200" height="150">
 
 ## Author:
   Spencer Dezart-Smith
