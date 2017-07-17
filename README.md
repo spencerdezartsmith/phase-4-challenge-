@@ -34,8 +34,7 @@ Go to http://localhost:3000/
 
 ## Screenshots
 
-<img src="http://i.imgur.com/OtpxzSt.png" alt="alt text" width="200" height="150">
-<img src="http://i.imgur.com/KuoYfN3.png" alt="alt text" width="200" height="150">
+<img src="http://i.imgur.com/OtpxzSt.png" alt="alt text" width="200" height="150"><img src="http://i.imgur.com/KuoYfN3.png" alt="alt text" width="200" height="150">
 <img src="http://i.imgur.com/CSOiaxd.png" alt="alt text" width="200" height="150">
 <img src="http://i.imgur.com/bDH64l2.png" alt="alt text" width="200" height="150">
 <img src="http://i.imgur.com/8xsQshj.png" alt="alt text" width="200" height="150">
