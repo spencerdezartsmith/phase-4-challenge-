@@ -32,6 +32,9 @@ Go to http://localhost:3000/
   - Have opinions
   - Have fun :)
 
+## Screenshots
+
+![alt tag](http://i.imgur.com/OtpxzSt.png)
 
 ## Author:
   Spencer Dezart-Smith
